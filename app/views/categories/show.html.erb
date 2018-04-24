@@ -1,0 +1,8 @@
+Category X details<br>
+
+<%= @category.name %>
+
+<%= link_to 'Edit', action: 'edit', id: @category.id, from: 'show' %><br>
+<%= link_to 'Delete', {action: 'destroy', id: @category.id}, method: :delete %>
+
+<%= link_to 'Back', action: 'index' %>

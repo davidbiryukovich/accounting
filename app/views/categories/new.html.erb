@@ -1,0 +1,10 @@
+New Category form
+
+<%= form_for @category, action: 'create' do |f| %>
+  <%= render partial: '/shared/error_messages', locals: {object: @category} %>
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Create' %>
+<% end %><br>
+
+<%= link_to 'Back', action: 'index' %>

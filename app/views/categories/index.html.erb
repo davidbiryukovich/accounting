@@ -1,0 +1,8 @@
+List of Categories<br>
+<%= link_to 'Add Category', action: 'new' %><br>
+
+<% @categories.each do |category| %>
+  <%= link_to category.name, action: 'show', id: category.id %>
+  <%= link_to 'Edit', action: 'edit', id: category.id, from: 'index' %>
+  <%= link_to 'Delete', {action: 'destroy', id: category.id}, method: :delete %><br>
+<% end %>

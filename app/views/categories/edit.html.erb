@@ -1,0 +1,10 @@
+Edit Category form<br>
+
+<%= form_for @category, action: 'update', id: @category.id do |f| %>
+  <%= render partial: '/shared/error_messages', locals: {object: @category} %>
+  <%= f.label :name, 'Name' %>
+  <%= f.text_field :name %>
+  <%= f.submit 'Update' %>
+<% end %>
+
+<%= link_to 'Back', action: params[:from], id: params[:id] %>
