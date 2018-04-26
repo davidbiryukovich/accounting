@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_24_192013) do
+ActiveRecord::Schema.define(version: 2018_04_26_161758) do
 
   create_table "categories", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "transactions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "date", null: false
+    t.decimal "amount", precision: 10, scale: 2, null: false
+    t.integer "category_id", null: false
+    t.string "comment"
+    t.index ["category_id"], name: "index_transactions_on_category_id"
+    t.index ["comment"], name: "index_transactions_on_comment"
+    t.index ["date"], name: "index_transactions_on_date"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -1,0 +1,9 @@
+List of Transactions
+
+<%= @transactions.all %>
+
+<% @transactions.each do |transaction| %>
+  <%= link_to "#{transaction.date} #{transaction.amount} #{transaction.category.name}", action: 'show', id: transaction.id %><br>
+<% end %>
+
+<%= link_to 'Add Transaction', action: 'new' %>

@@ -1,0 +1,21 @@
+New Transaction form
+
+<%= form_for @transaction, action: 'create' do |f| %>
+  <%= render partial: '/shared/error_messages', locals: {object: @transaction} %>
+
+  <%= f.label :date, 'Date' %>
+  <%= f.date_field :date %><br>
+
+  <%= f.label :amount, 'Amount' %>
+  <%= f.number_field(:amount, step: 0.01) %><br>
+
+  <%= f.label :comment, 'Comment' %>
+  <%= f.text_area(:comment, size: "24x3") %><br>
+
+  <%= f.label :category_id, 'Category' %>
+  <%= f.select(:category_id, Category.all.map {|p| [ p.name, p.id ] }, { include_blank: true }) %>
+
+  <%= f.submit 'Create' %>
+
+<% end %>
+
