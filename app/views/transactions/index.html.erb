@@ -1,9 +1,40 @@
-List of Transactions
+List of Transactions<br>
 
-<%= @transactions.all %>
+<%= link_to 'Add Transaction', action: 'new' %><br>
 
-<% @transactions.each do |transaction| %>
-  <%= link_to "#{transaction.date} #{transaction.amount} #{transaction.category.name}", action: 'show', id: transaction.id %><br>
-<% end %>
+<!--
+<table class="cool-table">
+  <% @transactions.each do |transaction| %>
+    <tr>
+      <td>
+        <%= link_to "#{transaction.date}", action: 'show', id: transaction.id %>
+      </td>
+      <td>
+        <%= link_to "#{transaction.amount}", action: 'show', id: transaction.id %>
+      </td>
+      <td>
+        <%= link_to "#{transaction.category.name}", action: 'show', id: transaction.id %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+-->
 
-<%= link_to 'Add Transaction', action: 'new' %>
+<table class="cool-table">
+  <% @transactions.each do |transaction| %>    <tr>
+      <td>
+        <a href="<%= url_for action: 'show', id: transaction.id %>" >
+          <div style="height: 100%; width: 100%; padding: 10px;">
+            <%= transaction.date %>
+            <%= transaction.amount %>
+            <%= transaction.category.name %>
+            <%= transaction.comment %>
+          </div>
+        </a>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+
+<%= link_to 'Main page', controller: 'home', action: 'index' %>

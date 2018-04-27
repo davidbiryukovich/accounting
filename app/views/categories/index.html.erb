@@ -6,3 +6,5 @@ List of Categories<br>
   <%= link_to 'Edit', action: 'edit', id: category.id, from: 'index' %>
   <%= link_to 'Delete', {action: 'destroy', id: category.id}, method: :delete %><br>
 <% end %>
+
+<%= link_to 'Main page', controller: 'home', action: 'index' %>

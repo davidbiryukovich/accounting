@@ -2,6 +2,21 @@ Category X details<br>
 
 <%= @category.name %>
 
+<table class="cool-table">
+  <% @category.transactions.each do |transaction| %>    <tr>
+  <td>
+    <a href="<%= url_for action: 'show', id: transaction.id %>" >
+      <div style="height: 100%; width: 100%; padding: 10px;">
+        <%= transaction.date %>
+        <%= transaction.amount %>
+        <%= transaction.comment %>
+      </div>
+    </a>
+  </td>
+</tr>
+  <% end %>
+</table>
+
 <%= link_to 'Edit', action: 'edit', id: @category.id, from: 'show' %><br>
 <%= link_to 'Delete', {action: 'destroy', id: @category.id}, method: :delete %>
 

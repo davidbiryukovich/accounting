@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+.cool-table, .cool-table tr, .cool-table td {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 3px;
+}
+.cool-table tr:hover {
+    background-color: #BBBBBB;
+}
+

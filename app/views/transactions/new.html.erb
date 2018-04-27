@@ -4,7 +4,7 @@ New Transaction form
   <%= render partial: '/shared/error_messages', locals: {object: @transaction} %>
 
   <%= f.label :date, 'Date' %>
-  <%= f.date_field :date %><br>
+  <%= f.date_field :date, :value => Time.now.strftime('%Y-%m-%d') %><br>
 
   <%= f.label :amount, 'Amount' %>
   <%= f.number_field(:amount, step: 0.01) %><br>
@@ -18,4 +18,6 @@ New Transaction form
   <%= f.submit 'Create' %>
 
 <% end %>
+
+<%= link_to 'Back', action: 'index' %>
 

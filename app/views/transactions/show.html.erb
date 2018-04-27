@@ -5,3 +5,6 @@ Transaction X details<br>
 <%= @transaction.amount %> BYN<br>
 <%= @transaction.comment %><br>
 
+<%= link_to 'Edit', action: 'edit', id: @transaction.id, from: 'show' %><br>
+<%= link_to 'Delete', {action: 'destroy', id: @transaction.id}, method: :delete %><br>
+<%= link_to 'Back', action: 'index' %>
