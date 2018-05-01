@@ -4,7 +4,7 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = current_category
+    @category = find_category
   end
 
   def new
@@ -12,7 +12,7 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = current_category
+    @category = find_category
   end
 
   def create
@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = current_category
+    @category = find_category
     return unless @category
 
     @category.attributes = category_params
@@ -43,7 +43,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = current_category
+    @category = find_category
     return unless @category
 
     @category.destroy
@@ -52,8 +52,8 @@ class CategoriesController < ApplicationController
 
   private
 
-  def current_category
-    result = Category.where(id: params[:id], user_id: current_user.id).first
+  def find_category
+    result = Category.find_by(id: params[:id], user_id: current_user.id)
     render_404 unless result
     result
   end

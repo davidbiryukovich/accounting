@@ -1,11 +1,11 @@
 class TransactionsController < ApplicationController
 
   def index
-    @transactions = Transaction.all
+    @transactions = user_transactions.all
   end
 
   def show
-    @transaction = Transaction.find(params[:id])
+    @transaction = find_transaction
   end
 
   def new
@@ -13,7 +13,7 @@ class TransactionsController < ApplicationController
   end
 
   def edit
-    @transaction = Transaction.find(params[:id])
+    @transaction = find_transaction
   end
 
   def create
@@ -29,7 +29,7 @@ class TransactionsController < ApplicationController
   end
 
   def update
-    @transaction = Transaction.find(params[:id])
+    @transaction = find_transaction
     @transaction.attributes = transaction_params
 
     if @transaction.valid?
@@ -41,14 +41,24 @@ class TransactionsController < ApplicationController
   end
 
   def destroy
-    @transaction = Transaction.find(params[:id])
+    @transaction = find_transaction
     @transaction.destroy
     redirect_to action: 'index'
   end
-end
 
-private
+  private
 
-def transaction_params
-  params.require(:transaction).permit(:date, :amount, :comment, :category_id)
+  def user_transactions
+    Transaction.where(category_id: current_user.categories.map(&:id))
+  end
+
+  def find_transaction
+    result = user_transactions.find_by(id: params[:id])
+    render_404 unless result
+    result
+  end
+
+  def transaction_params
+    params.require(:transaction).permit(:date, :amount, :comment, :category_id)
+  end
 end
