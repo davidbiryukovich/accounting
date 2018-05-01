@@ -1,10 +1,10 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = current_user.categories #Category.where(user_id: current_user.id).all
   end
 
   def show
-    @category = Category.find(params[:id])
+    @category = current_category
   end
 
   def new
@@ -12,11 +12,12 @@ class CategoriesController < ApplicationController
   end
 
   def edit
-    @category = Category.find(params[:id])
+    @category = current_category
   end
 
   def create
     @category = Category.new
+    @category.user = current_user
     @category.attributes = category_params
 
     if @category.valid?
@@ -28,7 +29,9 @@ class CategoriesController < ApplicationController
   end
 
   def update
-    @category = Category.find(params[:id])
+    @category = current_category
+    return unless @category
+
     @category.attributes = category_params
 
     if @category.valid?
@@ -40,12 +43,20 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    @category = Category.find(params[:id])
+    @category = current_category
+    return unless @category
+
     @category.destroy
     redirect_to action: 'index'
   end
 
   private
+
+  def current_category
+    result = Category.where(id: params[:id], user_id: current_user.id).first
+    render_404 unless result
+    result
+  end
 
   def category_params
     params.require(:category).permit(:name)
