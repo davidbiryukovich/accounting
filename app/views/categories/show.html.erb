@@ -5,7 +5,7 @@ Category X details<br>
 <table class="cool-table">
   <% @category.transactions.each do |transaction| %>    <tr>
   <td>
-    <a href="<%= url_for action: 'show', id: transaction.id %>" >
+    <a href="<%= url_for controller: 'transactions', action: 'show', id: transaction.id %>" >
       <div style="height: 100%; width: 100%; padding: 10px;">
         <%= transaction.date %>
         <%= transaction.amount %>
