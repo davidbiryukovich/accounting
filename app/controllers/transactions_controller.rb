@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
   end
 
   def new
-    @transaction = Transaction.new
+    @transaction = Transaction.new(date: Date.today)
   end
 
   def edit
