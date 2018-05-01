@@ -19,6 +19,7 @@ class TransactionsController < ApplicationController
   def create
     @transaction = Transaction.new
     @transaction.attributes = transaction_params
+    check_category(@transaction)
 
     if @transaction.valid?
       @transaction.save!
@@ -31,6 +32,7 @@ class TransactionsController < ApplicationController
   def update
     @transaction = find_transaction
     @transaction.attributes = transaction_params
+    check_category(@transaction)
 
     if @transaction.valid?
       @transaction.save!
@@ -56,6 +58,10 @@ class TransactionsController < ApplicationController
     result = user_transactions.find_by(id: params[:id])
     render_404 unless result
     result
+  end
+
+  def check_category(transaction)
+    transaction.category_id = nil if transaction.category&.user_id != current_user.id
   end
 
   def transaction_params
