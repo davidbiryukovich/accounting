@@ -1,9 +1,7 @@
 Edit Category form<br>
 
 <%= form_for @category, action: 'update', id: @category.id do |f| %>
-  <%= render partial: '/shared/error_messages', locals: {object: @category} %>
-  <%= f.label :name, 'Name' %>
-  <%= f.text_field :name %>
+  <%= render partial: 'form', locals: {f: f} %>
   <%= f.submit 'Update' %>
 <% end %>
 
