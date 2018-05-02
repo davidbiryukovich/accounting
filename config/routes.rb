@@ -6,4 +6,6 @@ Rails.application.routes.draw do
 
   resources :categories
   resources :transactions
+
+  match ':controller(/:action(/:id))', via: [:get, :post]
 end

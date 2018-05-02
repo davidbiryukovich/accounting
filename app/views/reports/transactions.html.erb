@@ -1,0 +1,12 @@
+<h1>Report</h1>
+
+
+<%= form_tag action: 'transactions' do %>
+  From <%= date_field_tag(:from_date, params[:from_date]) %> To <%= date_field_tag(:to_date, params[:to_date]) %>
+  <%= submit_tag 'Apply' %> <%= link_to 'Clear', action: 'transactions' %>
+<% end %>
+
+<% @transactions.each do |transaction| %>
+  <%= transaction.amount %>
+  <%= transaction.date %><br>
+<% end %>
