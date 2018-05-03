@@ -3,6 +3,7 @@
 
 <%= form_tag action: 'transactions' do %>
   From <%= date_field_tag(:from_date, params[:from_date]) %> To <%= date_field_tag(:to_date, params[:to_date]) %>
+  Category <%= select_tag(:category_id, options_from_collection_for_select(current_user.categories, :id, :name, params[:category_id]), {prompt: '- All Categories -'}) %>
   <%= submit_tag 'Apply' %> <%= link_to 'Clear', action: 'transactions' %>
 <% end %>
 
